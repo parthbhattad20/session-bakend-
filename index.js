@@ -22,7 +22,8 @@ mongoose.connect('mongodb+srv://Session:Session@parthdb.douis99.mongodb.net/?ret
 const feedbackSchema = new mongoose.Schema({
   fullName: { type: String, required: true },
   feedback: { type: String, required: true },
-  rating:{type:Number,required:true}
+  rating:{type:Number,required:true},
+  speakers:{type:Number,required:true}
 });
 
 
@@ -31,8 +32,8 @@ const Feedback = mongoose.model('Feedback', feedbackSchema);
 
 app.post('/feedback', async (req, res) => {
   try {
-    const { fullName, feedback,rating } = req.body;
-    const newFeedback = new Feedback({ fullName, feedback,rating });
+    const { fullName, feedback,rating,speakers } = req.body;
+    const newFeedback = new Feedback({ fullName, feedback,rating,speakers});
     await newFeedback.save();
     
     res.status(201).json({ message: 'Feedback submitted successfully!' });
