@@ -1,9 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');  
 
 
 const app = express();
+app.use(cors({
+    origin: '*',  // Allow requests from any origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization']  // Allowed headers
+}));
 
 app.use(bodyParser.json());
 
